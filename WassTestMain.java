@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import jp.co.niandc.selenium.wass.cases.CaseA;
+import jp.co.mariko.selenium.wass.cases.CaseA;
 
 public class WassTestMain {
 
@@ -42,11 +42,11 @@ public class WassTestMain {
 					method.invoke(setting, set[1]);
 
 				} else {
-//					Util.log("WARN", "setting.txt‚É•s—v‚Ès‚ª‚ ‚è‚Ü‚·F" + set[0]);
+//					Util.log("WARN", "setting.txtã«ä¸è¦ãªè¡ŒãŒã‚ã‚Šã¾ã™ï¼š" + set[0]);
 				}
 			}
 		} catch(Exception e) {
-			Util.log("ERROR", "İ’èƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½: " + e.getMessage());
+			Util.log("ERROR", "è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ: " + e.getMessage());
 			e.printStackTrace();
 			return;
 		}
@@ -60,14 +60,14 @@ public class WassTestMain {
 
 		for (String caseNo: expectedMap.keySet()) {
 			try {
-				Class<?> c = Class.forName("jp.co.niandc.selenium.wass.cases.Case" + caseNo);
-				// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
+				Class<?> c = Class.forName("jp.co.niandc.mariko.wass.cases.Case" + caseNo);
+				// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
 				CaseA caseObj = (CaseA)c.newInstance();
 				caseObj.setCaseNo(caseNo);
-				Util.log("INFO", "ƒeƒXƒgÀsF" + caseNo);
+				Util.log("INFO", "ãƒ†ã‚¹ãƒˆå®Ÿè¡Œï¼š" + caseNo);
 				evidences.put(caseNo, caseObj.execute(driver, wait, expectedMap.get(caseNo), setting));
 			} catch (Exception e) {
-				Util.log("ERROR", "test case‚ÌŒÄ‚Ño‚µ‚ÅƒGƒ‰[:caseNo[" + caseNo + "]" + e.getMessage());
+				Util.log("ERROR", "test caseã®å‘¼ã³å‡ºã—ã§ã‚¨ãƒ©ãƒ¼:caseNo[" + caseNo + "]" + e.getMessage());
 				e.printStackTrace();
 				break;
 			}
